@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AgeDataSet" targetNamespace="http://tempuri.org/AgeDataSet.xsd" xmlns:mstns="http://tempuri.org/AgeDataSet.xsd" xmlns="http://tempuri.org/AgeDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="SA46Team10aESNETProjectConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="SA46Team10aESNETProjectConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SA46Team10ASportsFacilityBookingSystem.Properties.Settings.GlobalReference.Default.SA46Team10aESNETProjectConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="viewAgeCountTableAdapter" GeneratorDataComponentClassName="viewAgeCountTableAdapter" Name="viewAgeCount" UserDataComponentName="viewAgeCountTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="SA46Team10aESNETProjectConnectionString (Settings)" DbObjectName="SA46Team10aESNETProject.dbo.viewAgeCount" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT range, Activity, number FROM dbo.viewAgeCount</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="range" DataSetColumn="AgeRange" />
+              <Mapping SourceColumn="Activity" DataSetColumn="Activity" />
+              <Mapping SourceColumn="number" DataSetColumn="BookingCounts" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AgeDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AgeDataSet" msprop:Generator_UserDSName="AgeDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="viewAgeCount" msprop:Generator_TableClassName="viewAgeCountDataTable" msprop:Generator_TableVarName="tableviewAgeCount" msprop:Generator_RowChangedName="viewAgeCountRowChanged" msprop:Generator_TablePropName="viewAgeCount" msprop:Generator_RowDeletingName="viewAgeCountRowDeleting" msprop:Generator_RowChangingName="viewAgeCountRowChanging" msprop:Generator_RowEvHandlerName="viewAgeCountRowChangeEventHandler" msprop:Generator_RowDeletedName="viewAgeCountRowDeleted" msprop:Generator_RowClassName="viewAgeCountRow" msprop:Generator_UserTableName="viewAgeCount" msprop:Generator_RowEvArgName="viewAgeCountRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AgeRange" msprop:Generator_ColumnVarNameInTable="columnAgeRange" msprop:Generator_ColumnPropNameInRow="AgeRange" msprop:Generator_ColumnPropNameInTable="AgeRangeColumn" msprop:Generator_UserColumnName="AgeRange">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Activity" msprop:Generator_ColumnVarNameInTable="columnActivity" msprop:Generator_ColumnPropNameInRow="Activity" msprop:Generator_ColumnPropNameInTable="ActivityColumn" msprop:Generator_UserColumnName="Activity" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BookingCounts" msprop:Generator_ColumnVarNameInTable="columnBookingCounts" msprop:Generator_ColumnPropNameInRow="BookingCounts" msprop:Generator_ColumnPropNameInTable="BookingCountsColumn" msprop:Generator_UserColumnName="BookingCounts" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

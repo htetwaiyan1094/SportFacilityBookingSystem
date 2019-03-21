@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MemberReport" targetNamespace="http://tempuri.org/MemberReport.xsd" xmlns:mstns="http://tempuri.org/MemberReport.xsd" xmlns="http://tempuri.org/MemberReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="SA46Team10aESNETProjectConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="SA46Team10aESNETProjectConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SA46Team10ASportsFacilityBookingSystem.Properties.Settings.GlobalReference.Default.SA46Team10aESNETProjectConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="viewMemRptTableAdapter" GeneratorDataComponentClassName="viewMemRptTableAdapter" Name="viewMemRpt" UserDataComponentName="viewMemRptTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="SA46Team10aESNETProjectConnectionString (Settings)" DbObjectName="SA46Team10aESNETProject.dbo.viewMemRpt" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT memberid, membername, total FROM dbo.viewMemRpt</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="memberid" DataSetColumn="MemberID" />
+              <Mapping SourceColumn="membername" DataSetColumn="Name" />
+              <Mapping SourceColumn="total" DataSetColumn="BookingCounts" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MemberReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="MemberReport" msprop:Generator_UserDSName="MemberReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="viewMemRpt" msprop:Generator_TableClassName="viewMemRptDataTable" msprop:Generator_TableVarName="tableviewMemRpt" msprop:Generator_TablePropName="viewMemRpt" msprop:Generator_RowDeletingName="viewMemRptRowDeleting" msprop:Generator_RowChangingName="viewMemRptRowChanging" msprop:Generator_RowEvHandlerName="viewMemRptRowChangeEventHandler" msprop:Generator_RowDeletedName="viewMemRptRowDeleted" msprop:Generator_UserTableName="viewMemRpt" msprop:Generator_RowChangedName="viewMemRptRowChanged" msprop:Generator_RowEvArgName="viewMemRptRowChangeEvent" msprop:Generator_RowClassName="viewMemRptRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MemberID" msdata:Caption="memberid" msprop:Generator_ColumnVarNameInTable="columnMemberID" msprop:Generator_ColumnPropNameInRow="MemberID" msprop:Generator_ColumnPropNameInTable="MemberIDColumn" msprop:Generator_UserColumnName="MemberID" type="xs:int" />
+              <xs:element name="Name" msdata:Caption="membername" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BookingCounts" msdata:Caption="total" msprop:Generator_ColumnVarNameInTable="columnBookingCounts" msprop:Generator_ColumnPropNameInRow="BookingCounts" msprop:Generator_ColumnPropNameInTable="BookingCountsColumn" msprop:Generator_UserColumnName="BookingCounts" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:viewMemRpt" />
+      <xs:field xpath="mstns:MemberID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

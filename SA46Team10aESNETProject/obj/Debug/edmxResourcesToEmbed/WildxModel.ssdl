@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SA46Team10aESNETProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="BookingNo" />
+    </Key>
+    <Property Name="BookingNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberID" Type="int" Nullable="false" />
+    <Property Name="FacilityID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TimingID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="FacilityDate" Type="date" />
+    <Property Name="BookingDate" Type="datetime" />
+    <Property Name="bookstatus" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Facility">
+    <Key>
+      <PropertyRef Name="FacilityID" />
+    </Key>
+    <Property Name="FacilityID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Activity" Type="nvarchar" MaxLength="30" />
+    <Property Name="Venue" Type="nvarchar" MaxLength="30" />
+    <Property Name="MaxCount" Type="int" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="memberID" />
+    </Key>
+    <Property Name="memberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberName" Type="nvarchar" MaxLength="30" />
+    <Property Name="Birthdate" Type="date" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="1" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="HandPhNo" Type="nvarchar" MaxLength="12" />
+  </EntityType>
+  <EntityType Name="Timing">
+    <Key>
+      <PropertyRef Name="TimingID" />
+    </Key>
+    <Property Name="TimingID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TimeSlot" Type="time" Precision="7" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SA46Team10aESNETProject.dbo.ViewBookingCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ViewBookingCount">
+    <Key>
+      <PropertyRef Name="FacilityID" />
+      <PropertyRef Name="TimingID" />
+    </Key>
+    <Property Name="FacilityID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="FacilityDate" Type="date" />
+    <Property Name="TimingID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="BookCount" Type="int" />
+  </EntityType>
+  <Association Name="FK__Booking__Facilit__7B5B524B">
+    <End Role="Facility" Type="Self.Facility" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facility">
+        <PropertyRef Name="FacilityID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="FacilityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Booking__MemberI__7A672E12">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="memberID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Booking__TimingI__7C4F7684">
+    <End Role="Timing" Type="Self.Timing" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Timing">
+        <PropertyRef Name="TimingID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="TimingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SA46Team10aESNETProjectModelStoreContainer">
+    <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Facility" EntityType="Self.Facility" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Timing" EntityType="Self.Timing" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ViewBookingCount" EntityType="Self.ViewBookingCount" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ViewBookingCount].[FacilityID] AS [FacilityID], 
+    [ViewBookingCount].[FacilityDate] AS [FacilityDate], 
+    [ViewBookingCount].[TimingID] AS [TimingID], 
+    [ViewBookingCount].[BookCount] AS [BookCount]
+    FROM [dbo].[ViewBookingCount] AS [ViewBookingCount]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Booking__Facilit__7B5B524B" Association="Self.FK__Booking__Facilit__7B5B524B">
+      <End Role="Facility" EntitySet="Facility" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__MemberI__7A672E12" Association="Self.FK__Booking__MemberI__7A672E12">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__TimingI__7C4F7684" Association="Self.FK__Booking__TimingI__7C4F7684">
+      <End Role="Timing" EntitySet="Timing" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

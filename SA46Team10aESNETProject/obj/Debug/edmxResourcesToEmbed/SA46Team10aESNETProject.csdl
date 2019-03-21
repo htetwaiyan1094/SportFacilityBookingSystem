@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SA46Team10aESNETProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="BookingNo" />
+    </Key>
+    <Property Name="BookingNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberID" Type="Int32" Nullable="false" />
+    <Property Name="FacilityID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TimingID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FacilityDate" Type="DateTime" Precision="0" />
+    <Property Name="BookingDate" Type="DateTime" Precision="3" />
+    <Property Name="bookstatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Facility" Relationship="Self.FK__Booking__Facilit__7B5B524B" FromRole="Booking" ToRole="Facility" />
+    <NavigationProperty Name="Member" Relationship="Self.FK__Booking__MemberI__7A672E12" FromRole="Booking" ToRole="Member" />
+    <NavigationProperty Name="Timing" Relationship="Self.FK__Booking__TimingI__7C4F7684" FromRole="Booking" ToRole="Timing" />
+  </EntityType>
+  <EntityType Name="Facility">
+    <Key>
+      <PropertyRef Name="FacilityID" />
+    </Key>
+    <Property Name="FacilityID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Activity" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Venue" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="MaxCount" Type="Int32" />
+    <NavigationProperty Name="Bookings" Relationship="Self.FK__Booking__Facilit__7B5B524B" FromRole="Facility" ToRole="Booking" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="memberID" />
+    </Key>
+    <Property Name="memberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Birthdate" Type="DateTime" Precision="0" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HandPhNo" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Bookings" Relationship="Self.FK__Booking__MemberI__7A672E12" FromRole="Member" ToRole="Booking" />
+  </EntityType>
+  <EntityType Name="Timing">
+    <Key>
+      <PropertyRef Name="TimingID" />
+    </Key>
+    <Property Name="TimingID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TimeSlot" Type="Time" Precision="7" />
+    <NavigationProperty Name="Bookings" Relationship="Self.FK__Booking__TimingI__7C4F7684" FromRole="Timing" ToRole="Booking" />
+  </EntityType>
+  <EntityType Name="ViewBookingCount">
+    <Key>
+      <PropertyRef Name="FacilityID" />
+      <PropertyRef Name="TimingID" />
+    </Key>
+    <Property Name="FacilityID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FacilityDate" Type="DateTime" Precision="0" />
+    <Property Name="TimingID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BookCount" Type="Int32" />
+  </EntityType>
+  <Association Name="FK__Booking__Facilit__7B5B524B">
+    <End Role="Facility" Type="Self.Facility" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facility">
+        <PropertyRef Name="FacilityID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="FacilityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Booking__MemberI__7A672E12">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="memberID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Booking__TimingI__7C4F7684">
+    <End Role="Timing" Type="Self.Timing" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Timing">
+        <PropertyRef Name="TimingID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="TimingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SA46Team10aESNETProjectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bookings" EntityType="Self.Booking" />
+    <EntitySet Name="Facilities" EntityType="Self.Facility" />
+    <EntitySet Name="Members" EntityType="Self.Member" />
+    <EntitySet Name="Timings" EntityType="Self.Timing" />
+    <EntitySet Name="ViewBookingCounts" EntityType="Self.ViewBookingCount" />
+    <AssociationSet Name="FK__Booking__Facilit__7B5B524B" Association="Self.FK__Booking__Facilit__7B5B524B">
+      <End Role="Facility" EntitySet="Facilities" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__MemberI__7A672E12" Association="Self.FK__Booking__MemberI__7A672E12">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__TimingI__7C4F7684" Association="Self.FK__Booking__TimingI__7C4F7684">
+      <End Role="Timing" EntitySet="Timings" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+    <EntitySet Name="viewMemRpts" EntityType="SA46Team10aESNETProjectModel.viewMemRpt" />
+    <EntitySet Name="viewOccus" EntityType="SA46Team10aESNETProjectModel.viewOccu" />
+    <EntitySet Name="viewAgeCounts" EntityType="SA46Team10aESNETProjectModel.viewAgeCount" />
+    <EntitySet Name="viewBookRecs" EntityType="SA46Team10aESNETProjectModel.viewBookRec" />
+  </EntityContainer>
+  <EntityType Name="viewMemRpt">
+    <Key>
+      <PropertyRef Name="memberid" />
+    </Key>
+    <Property Name="memberid" Type="Int32" Nullable="false" />
+    <Property Name="membername" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="total" Type="Int32" />
+  </EntityType>
+  <EntityType Name="viewOccu">
+    <Key>
+      <PropertyRef Name="Occu" />
+    </Key>
+    <Property Name="Activity" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="Occu" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="viewAgeCount">
+    <Key>
+      <PropertyRef Name="range" />
+    </Key>
+    <Property Name="range" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Activity" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="number" Type="Int32" />
+  </EntityType>
+  <EntityType Name="viewBookRec">
+    <Key>
+      <PropertyRef Name="BookingNo" />
+      <PropertyRef Name="memberID" />
+      <PropertyRef Name="TimingID" />
+    </Key>
+    <Property Name="BookingNo" Type="Int32" Nullable="false" />
+    <Property Name="MemberName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="memberID" Type="Int32" Nullable="false" />
+    <Property Name="Activity" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Venue" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="FacilityDate" Type="DateTime" Precision="0" />
+    <Property Name="TimingID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="BookingDate" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>

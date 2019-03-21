@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BookingDataSet" targetNamespace="http://tempuri.org/BookingDataSet.xsd" xmlns:mstns="http://tempuri.org/BookingDataSet.xsd" xmlns="http://tempuri.org/BookingDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="SA46Team10aESNETProjectConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="SA46Team10aESNETProjectConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SA46Team10ASportsFacilityBookingSystem.Properties.Settings.GlobalReference.Default.SA46Team10aESNETProjectConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="viewBookRecTableAdapter" GeneratorDataComponentClassName="viewBookRecTableAdapter" Name="viewBookRec" UserDataComponentName="viewBookRecTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="SA46Team10aESNETProjectConnectionString (Settings)" DbObjectName="SA46Team10aESNETProject.dbo.viewBookRec" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT BookingNo, MemberName, memberID, Activity, Venue, FacilityDate, TimingID FROM viewBookRec</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="BookingNo" DataSetColumn="BookingNo" />
+              <Mapping SourceColumn="MemberName" DataSetColumn="MemberName" />
+              <Mapping SourceColumn="memberID" DataSetColumn="memberID" />
+              <Mapping SourceColumn="Activity" DataSetColumn="Activity" />
+              <Mapping SourceColumn="Venue" DataSetColumn="Venue" />
+              <Mapping SourceColumn="FacilityDate" DataSetColumn="Date" />
+              <Mapping SourceColumn="TimingID" DataSetColumn="Time" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BookingDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="BookingDataSet" msprop:Generator_UserDSName="BookingDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="viewBookRec" msprop:Generator_TableClassName="viewBookRecDataTable" msprop:Generator_TableVarName="tableviewBookRec" msprop:Generator_TablePropName="viewBookRec" msprop:Generator_RowDeletingName="viewBookRecRowDeleting" msprop:Generator_RowChangingName="viewBookRecRowChanging" msprop:Generator_RowEvHandlerName="viewBookRecRowChangeEventHandler" msprop:Generator_RowDeletedName="viewBookRecRowDeleted" msprop:Generator_UserTableName="viewBookRec" msprop:Generator_RowChangedName="viewBookRecRowChanged" msprop:Generator_RowEvArgName="viewBookRecRowChangeEvent" msprop:Generator_RowClassName="viewBookRecRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BookingNo" msprop:Generator_ColumnVarNameInTable="columnBookingNo" msprop:Generator_ColumnPropNameInRow="BookingNo" msprop:Generator_ColumnPropNameInTable="BookingNoColumn" msprop:Generator_UserColumnName="BookingNo" type="xs:int" />
+              <xs:element name="MemberName" msprop:Generator_ColumnVarNameInTable="columnMemberName" msprop:Generator_ColumnPropNameInRow="MemberName" msprop:Generator_ColumnPropNameInTable="MemberNameColumn" msprop:Generator_UserColumnName="MemberName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="memberID" msprop:Generator_ColumnVarNameInTable="columnmemberID" msprop:Generator_ColumnPropNameInRow="memberID" msprop:Generator_ColumnPropNameInTable="memberIDColumn" msprop:Generator_UserColumnName="memberID" type="xs:int" />
+              <xs:element name="Activity" msprop:Generator_ColumnVarNameInTable="columnActivity" msprop:Generator_ColumnPropNameInRow="Activity" msprop:Generator_ColumnPropNameInTable="ActivityColumn" msprop:Generator_UserColumnName="Activity" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Venue" msprop:Generator_ColumnVarNameInTable="columnVenue" msprop:Generator_ColumnPropNameInRow="Venue" msprop:Generator_ColumnPropNameInTable="VenueColumn" msprop:Generator_UserColumnName="Venue" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Date" msdata:Caption="FacilityDate" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Time" msdata:Caption="TimingID" msprop:Generator_ColumnVarNameInTable="columnTime" msprop:Generator_ColumnPropNameInRow="Time" msprop:Generator_ColumnPropNameInTable="TimeColumn" msprop:Generator_UserColumnName="Time">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

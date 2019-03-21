@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="OccupancyDataSet" targetNamespace="http://tempuri.org/OccupancyDataSet.xsd" xmlns:mstns="http://tempuri.org/OccupancyDataSet.xsd" xmlns="http://tempuri.org/OccupancyDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="SA46Team10aESNETProjectConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="SA46Team10aESNETProjectConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SA46Team10ASportsFacilityBookingSystem.Properties.Settings.GlobalReference.Default.SA46Team10aESNETProjectConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="viewOccuTableAdapter" GeneratorDataComponentClassName="viewOccuTableAdapter" Name="viewOccu" UserDataComponentName="viewOccuTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="SA46Team10aESNETProjectConnectionString (Settings)" DbObjectName="SA46Team10aESNETProject.dbo.viewOccu" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Activity, Month, Year, Occu FROM dbo.viewOccu</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Activity" DataSetColumn="Activity" />
+              <Mapping SourceColumn="Month" DataSetColumn="Month" />
+              <Mapping SourceColumn="Year" DataSetColumn="Year" />
+              <Mapping SourceColumn="Occu" DataSetColumn="Occu" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="OccupancyDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="OccupancyDataSet" msprop:Generator_UserDSName="OccupancyDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="viewOccu" msprop:Generator_TableClassName="viewOccuDataTable" msprop:Generator_TableVarName="tableviewOccu" msprop:Generator_TablePropName="viewOccu" msprop:Generator_RowDeletingName="viewOccuRowDeleting" msprop:Generator_RowChangingName="viewOccuRowChanging" msprop:Generator_RowEvHandlerName="viewOccuRowChangeEventHandler" msprop:Generator_RowDeletedName="viewOccuRowDeleted" msprop:Generator_UserTableName="viewOccu" msprop:Generator_RowChangedName="viewOccuRowChanged" msprop:Generator_RowEvArgName="viewOccuRowChangeEvent" msprop:Generator_RowClassName="viewOccuRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Activity" msprop:Generator_ColumnVarNameInTable="columnActivity" msprop:Generator_ColumnPropNameInRow="Activity" msprop:Generator_ColumnPropNameInTable="ActivityColumn" msprop:Generator_UserColumnName="Activity" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Month" msprop:Generator_ColumnVarNameInTable="columnMonth" msprop:Generator_ColumnPropNameInRow="Month" msprop:Generator_ColumnPropNameInTable="MonthColumn" msprop:Generator_UserColumnName="Month" type="xs:int" minOccurs="0" />
+              <xs:element name="Year" msprop:Generator_ColumnVarNameInTable="columnYear" msprop:Generator_ColumnPropNameInRow="Year" msprop:Generator_ColumnPropNameInTable="YearColumn" msprop:Generator_UserColumnName="Year" type="xs:int" minOccurs="0" />
+              <xs:element name="Occu" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnOccu" msprop:Generator_ColumnPropNameInRow="Occu" msprop:Generator_ColumnPropNameInTable="OccuColumn" msprop:Generator_UserColumnName="Occu" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="13" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

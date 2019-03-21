@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SA46Team10aESNETProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="BookingNo" />
+          </Key>
+          <Property Name="BookingNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="FacilityID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TimingID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="FacilityDate" Type="date" />
+          <Property Name="BookingDate" Type="datetime" />
+          <Property Name="bookstatus" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Facility">
+          <Key>
+            <PropertyRef Name="FacilityID" />
+          </Key>
+          <Property Name="FacilityID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Activity" Type="nvarchar" MaxLength="30" />
+          <Property Name="Venue" Type="nvarchar" MaxLength="30" />
+          <Property Name="MaxCount" Type="int" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="memberID" />
+          </Key>
+          <Property Name="memberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberName" Type="nvarchar" MaxLength="30" />
+          <Property Name="Birthdate" Type="date" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="1" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="HandPhNo" Type="nvarchar" MaxLength="12" />
+        </EntityType>
+        <EntityType Name="Timing">
+          <Key>
+            <PropertyRef Name="TimingID" />
+          </Key>
+          <Property Name="TimingID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TimeSlot" Type="time" Precision="7" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SA46Team10aESNETProject.dbo.viewAgeCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="viewAgeCount">
+          <Key>
+            <PropertyRef Name="range" />
+          </Key>
+          <Property Name="range" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Activity" Type="nvarchar" MaxLength="30" />
+          <Property Name="number" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SA46Team10aESNETProject.dbo.ViewBookingCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewBookingCount">
+          <Key>
+            <PropertyRef Name="FacilityID" />
+            <PropertyRef Name="TimingID" />
+          </Key>
+          <Property Name="FacilityID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="FacilityDate" Type="date" />
+          <Property Name="TimingID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="BookCount" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SA46Team10aESNETProject.dbo.viewBookRec' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="viewBookRec">
+          <Key>
+            <PropertyRef Name="BookingNo" />
+            <PropertyRef Name="memberID" />
+            <PropertyRef Name="TimingID" />
+          </Key>
+          <Property Name="BookingNo" Type="int" Nullable="false" />
+          <Property Name="MemberName" Type="nvarchar" MaxLength="30" />
+          <Property Name="memberID" Type="int" Nullable="false" />
+          <Property Name="Activity" Type="nvarchar" MaxLength="30" />
+          <Property Name="Venue" Type="nvarchar" MaxLength="30" />
+          <Property Name="FacilityDate" Type="date" />
+          <Property Name="TimingID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="BookingDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SA46Team10aESNETProject.dbo.viewMemRpt' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="viewMemRpt">
+          <Key>
+            <PropertyRef Name="memberid" />
+          </Key>
+          <Property Name="memberid" Type="int" Nullable="false" />
+          <Property Name="membername" Type="nvarchar" MaxLength="30" />
+          <Property Name="total" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SA46Team10aESNETProject.dbo.viewOccu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="viewOccu">
+          <Key>
+            <PropertyRef Name="Occu" />
+          </Key>
+          <Property Name="Activity" Type="nvarchar" MaxLength="30" />
+          <Property Name="Month" Type="int" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Occu" Type="varchar" MaxLength="13" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Booking__Facilit__7B5B524B">
+          <End Role="Facility" Type="Self.Facility" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facility">
+              <PropertyRef Name="FacilityID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="FacilityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__MemberI__7A672E12">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="memberID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__TimingI__7C4F7684">
+          <End Role="Timing" Type="Self.Timing" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Timing">
+              <PropertyRef Name="TimingID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="TimingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SA46Team10aESNETProjectModelStoreContainer">
+          <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facility" EntityType="Self.Facility" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Timing" EntityType="Self.Timing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="viewAgeCount" EntityType="Self.viewAgeCount" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewAgeCount].[range] AS [range], 
+    [viewAgeCount].[Activity] AS [Activity], 
+    [viewAgeCount].[number] AS [number]
+    FROM [dbo].[viewAgeCount] AS [viewAgeCount]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewBookingCount" EntityType="Self.ViewBookingCount" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewBookingCount].[FacilityID] AS [FacilityID], 
+    [ViewBookingCount].[FacilityDate] AS [FacilityDate], 
+    [ViewBookingCount].[TimingID] AS [TimingID], 
+    [ViewBookingCount].[BookCount] AS [BookCount]
+    FROM [dbo].[ViewBookingCount] AS [ViewBookingCount]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="viewBookRec" EntityType="Self.viewBookRec" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewBookRec].[BookingNo] AS [BookingNo], 
+    [viewBookRec].[MemberName] AS [MemberName], 
+    [viewBookRec].[memberID] AS [memberID], 
+    [viewBookRec].[Activity] AS [Activity], 
+    [viewBookRec].[Venue] AS [Venue], 
+    [viewBookRec].[FacilityDate] AS [FacilityDate], 
+    [viewBookRec].[TimingID] AS [TimingID], 
+    [viewBookRec].[BookingDate] AS [BookingDate]
+    FROM [dbo].[viewBookRec] AS [viewBookRec]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="viewMemRpt" EntityType="Self.viewMemRpt" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewMemRpt].[memberid] AS [memberid], 
+    [viewMemRpt].[membername] AS [membername], 
+    [viewMemRpt].[total] AS [total]
+    FROM [dbo].[viewMemRpt] AS [viewMemRpt]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="viewOccu" EntityType="Self.viewOccu" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewOccu].[Activity] AS [Activity], 
+    [viewOccu].[Month] AS [Month], 
+    [viewOccu].[Year] AS [Year], 
+    [viewOccu].[Occu] AS [Occu]
+    FROM [dbo].[viewOccu] AS [viewOccu]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Booking__Facilit__7B5B524B" Association="Self.FK__Booking__Facilit__7B5B524B">
+            <End Role="Facility" EntitySet="Facility" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__MemberI__7A672E12" Association="Self.FK__Booking__MemberI__7A672E12">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__TimingI__7C4F7684" Association="Self.FK__Booking__TimingI__7C4F7684">
+            <End Role="Timing" EntitySet="Timing" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SA46Team10aESNETProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="BookingNo" />
+          </Key>
+          <Property Name="BookingNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="FacilityID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TimingID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FacilityDate" Type="DateTime" Precision="0" />
+          <Property Name="BookingDate" Type="DateTime" Precision="3" />
+          <Property Name="bookstatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Facility" Relationship="Self.FK__Booking__Facilit__7B5B524B" FromRole="Booking" ToRole="Facility" />
+          <NavigationProperty Name="Member" Relationship="Self.FK__Booking__MemberI__7A672E12" FromRole="Booking" ToRole="Member" />
+          <NavigationProperty Name="Timing" Relationship="Self.FK__Booking__TimingI__7C4F7684" FromRole="Booking" ToRole="Timing" />
+        </EntityType>
+        <EntityType Name="Facility">
+          <Key>
+            <PropertyRef Name="FacilityID" />
+          </Key>
+          <Property Name="FacilityID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Activity" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Venue" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MaxCount" Type="Int32" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK__Booking__Facilit__7B5B524B" FromRole="Facility" ToRole="Booking" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="memberID" />
+          </Key>
+          <Property Name="memberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Birthdate" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HandPhNo" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK__Booking__MemberI__7A672E12" FromRole="Member" ToRole="Booking" />
+        </EntityType>
+        <EntityType Name="Timing">
+          <Key>
+            <PropertyRef Name="TimingID" />
+          </Key>
+          <Property Name="TimingID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TimeSlot" Type="Time" Precision="7" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK__Booking__TimingI__7C4F7684" FromRole="Timing" ToRole="Booking" />
+        </EntityType>
+        <EntityType Name="ViewBookingCount">
+          <Key>
+            <PropertyRef Name="FacilityID" />
+            <PropertyRef Name="TimingID" />
+          </Key>
+          <Property Name="FacilityID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FacilityDate" Type="DateTime" Precision="0" />
+          <Property Name="TimingID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BookCount" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__Booking__Facilit__7B5B524B">
+          <End Role="Facility" Type="Self.Facility" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facility">
+              <PropertyRef Name="FacilityID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="FacilityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__MemberI__7A672E12">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="memberID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__TimingI__7C4F7684">
+          <End Role="Timing" Type="Self.Timing" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Timing">
+              <PropertyRef Name="TimingID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="TimingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SA46Team10aESNETProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bookings" EntityType="Self.Booking" />
+          <EntitySet Name="Facilities" EntityType="Self.Facility" />
+          <EntitySet Name="Members" EntityType="Self.Member" />
+          <EntitySet Name="Timings" EntityType="Self.Timing" />
+          <EntitySet Name="ViewBookingCounts" EntityType="Self.ViewBookingCount" />
+          <AssociationSet Name="FK__Booking__Facilit__7B5B524B" Association="Self.FK__Booking__Facilit__7B5B524B">
+            <End Role="Facility" EntitySet="Facilities" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__MemberI__7A672E12" Association="Self.FK__Booking__MemberI__7A672E12">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__TimingI__7C4F7684" Association="Self.FK__Booking__TimingI__7C4F7684">
+            <End Role="Timing" EntitySet="Timings" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <EntitySet Name="viewMemRpts" EntityType="SA46Team10aESNETProjectModel.viewMemRpt" />
+          <EntitySet Name="viewOccus" EntityType="SA46Team10aESNETProjectModel.viewOccu" />
+          <EntitySet Name="viewAgeCounts" EntityType="SA46Team10aESNETProjectModel.viewAgeCount" />
+          <EntitySet Name="viewBookRecs" EntityType="SA46Team10aESNETProjectModel.viewBookRec" />
+        </EntityContainer>
+        <EntityType Name="viewMemRpt">
+          <Key>
+            <PropertyRef Name="memberid" />
+          </Key>
+          <Property Name="memberid" Type="Int32" Nullable="false" />
+          <Property Name="membername" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="total" Type="Int32" />
+        </EntityType>
+        <EntityType Name="viewOccu">
+          <Key>
+            <PropertyRef Name="Occu" />
+          </Key>
+          <Property Name="Activity" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Occu" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="viewAgeCount">
+          <Key>
+            <PropertyRef Name="range" />
+          </Key>
+          <Property Name="range" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Activity" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="number" Type="Int32" />
+        </EntityType>
+        <EntityType Name="viewBookRec">
+          <Key>
+            <PropertyRef Name="BookingNo" />
+            <PropertyRef Name="memberID" />
+            <PropertyRef Name="TimingID" />
+          </Key>
+          <Property Name="BookingNo" Type="Int32" Nullable="false" />
+          <Property Name="MemberName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="memberID" Type="Int32" Nullable="false" />
+          <Property Name="Activity" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Venue" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="FacilityDate" Type="DateTime" Precision="0" />
+          <Property Name="TimingID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BookingDate" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SA46Team10aESNETProjectModelStoreContainer" CdmEntityContainer="SA46Team10aESNETProjectEntities">
+          <EntitySetMapping Name="Bookings">
+            <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.Booking">
+              <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="BookingNo" ColumnName="BookingNo" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="FacilityID" ColumnName="FacilityID" />
+                <ScalarProperty Name="TimingID" ColumnName="TimingID" />
+                <ScalarProperty Name="FacilityDate" ColumnName="FacilityDate" />
+                <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+                <ScalarProperty Name="bookstatus" ColumnName="bookstatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Facilities">
+            <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.Facility">
+              <MappingFragment StoreEntitySet="Facility">
+                <ScalarProperty Name="FacilityID" ColumnName="FacilityID" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+                <ScalarProperty Name="Venue" ColumnName="Venue" />
+                <ScalarProperty Name="MaxCount" ColumnName="MaxCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="memberID" ColumnName="memberID" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="HandPhNo" ColumnName="HandPhNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Timings">
+            <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.Timing">
+              <MappingFragment StoreEntitySet="Timing">
+                <ScalarProperty Name="TimingID" ColumnName="TimingID" />
+                <ScalarProperty Name="TimeSlot" ColumnName="TimeSlot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewBookingCounts">
+            <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.ViewBookingCount">
+              <MappingFragment StoreEntitySet="ViewBookingCount">
+                <ScalarProperty Name="FacilityID" ColumnName="FacilityID" />
+                <ScalarProperty Name="FacilityDate" ColumnName="FacilityDate" />
+                <ScalarProperty Name="TimingID" ColumnName="TimingID" />
+                <ScalarProperty Name="BookCount" ColumnName="BookCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewMemRpts">
+            <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.viewMemRpt">
+              <MappingFragment StoreEntitySet="viewMemRpt">
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="membername" ColumnName="membername" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewOccus">
+            <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.viewOccu">
+              <MappingFragment StoreEntitySet="viewOccu">
+                <ScalarProperty Name="Occu" ColumnName="Occu" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewAgeCounts">
+            <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.viewAgeCount">
+              <MappingFragment StoreEntitySet="viewAgeCount">
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+                <ScalarProperty Name="range" ColumnName="range" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewBookRecs">
+            <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.viewBookRec">
+              <MappingFragment StoreEntitySet="viewBookRec">
+                <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+                <ScalarProperty Name="TimingID" ColumnName="TimingID" />
+                <ScalarProperty Name="FacilityDate" ColumnName="FacilityDate" />
+                <ScalarProperty Name="Venue" ColumnName="Venue" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+                <ScalarProperty Name="memberID" ColumnName="memberID" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="BookingNo" ColumnName="BookingNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

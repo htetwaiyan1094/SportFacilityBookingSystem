@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SA46Team10aESNETProjectModelStoreContainer" CdmEntityContainer="SA46Team10aESNETProjectEntities">
+    <EntitySetMapping Name="Bookings">
+      <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.Booking">
+        <MappingFragment StoreEntitySet="Booking">
+          <ScalarProperty Name="BookingNo" ColumnName="BookingNo" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="FacilityID" ColumnName="FacilityID" />
+          <ScalarProperty Name="TimingID" ColumnName="TimingID" />
+          <ScalarProperty Name="FacilityDate" ColumnName="FacilityDate" />
+          <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+          <ScalarProperty Name="bookstatus" ColumnName="bookstatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Facilities">
+      <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.Facility">
+        <MappingFragment StoreEntitySet="Facility">
+          <ScalarProperty Name="FacilityID" ColumnName="FacilityID" />
+          <ScalarProperty Name="Activity" ColumnName="Activity" />
+          <ScalarProperty Name="Venue" ColumnName="Venue" />
+          <ScalarProperty Name="MaxCount" ColumnName="MaxCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="memberID" ColumnName="memberID" />
+          <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+          <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="HandPhNo" ColumnName="HandPhNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Timings">
+      <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.Timing">
+        <MappingFragment StoreEntitySet="Timing">
+          <ScalarProperty Name="TimingID" ColumnName="TimingID" />
+          <ScalarProperty Name="TimeSlot" ColumnName="TimeSlot" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewBookingCounts">
+      <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.ViewBookingCount">
+        <MappingFragment StoreEntitySet="ViewBookingCount">
+          <ScalarProperty Name="FacilityID" ColumnName="FacilityID" />
+          <ScalarProperty Name="FacilityDate" ColumnName="FacilityDate" />
+          <ScalarProperty Name="TimingID" ColumnName="TimingID" />
+          <ScalarProperty Name="BookCount" ColumnName="BookCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="viewMemRpts">
+      <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.viewMemRpt">
+        <MappingFragment StoreEntitySet="viewMemRpt">
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="membername" ColumnName="membername" />
+          <ScalarProperty Name="memberid" ColumnName="memberid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="viewOccus">
+      <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.viewOccu">
+        <MappingFragment StoreEntitySet="viewOccu">
+          <ScalarProperty Name="Occu" ColumnName="Occu" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Activity" ColumnName="Activity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="viewAgeCounts">
+      <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.viewAgeCount">
+        <MappingFragment StoreEntitySet="viewAgeCount">
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="Activity" ColumnName="Activity" />
+          <ScalarProperty Name="range" ColumnName="range" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="viewBookRecs">
+      <EntityTypeMapping TypeName="SA46Team10aESNETProjectModel.viewBookRec">
+        <MappingFragment StoreEntitySet="viewBookRec">
+          <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+          <ScalarProperty Name="TimingID" ColumnName="TimingID" />
+          <ScalarProperty Name="FacilityDate" ColumnName="FacilityDate" />
+          <ScalarProperty Name="Venue" ColumnName="Venue" />
+          <ScalarProperty Name="Activity" ColumnName="Activity" />
+          <ScalarProperty Name="memberID" ColumnName="memberID" />
+          <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+          <ScalarProperty Name="BookingNo" ColumnName="BookingNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
