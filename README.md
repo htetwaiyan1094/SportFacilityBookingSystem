@@ -1,11 +1,11 @@
-#PROJECT DETAILS
+# PROJECT DETAILS
 
 - built for receptionists
 - aimed to improve booking process
 - a group project developed by three members
 - Windows Form project using C#, .NET Framework, Entity Framework, Crystal Report
 
-## Sample Screens
+## SAMPLE SCREENS
 
 ### HOME PAGE
 ![](images/home.png)
