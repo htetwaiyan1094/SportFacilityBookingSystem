@@ -14,7 +14,6 @@ namespace SA46Team10ASportsFacilityBookingSystem
     {
         SA46Team10aESNETProjectEntities ctx;
         List<Facility> flist;
-        int current;
         public FacilitiesUserControl()
         {
             InitializeComponent();
@@ -22,12 +21,15 @@ namespace SA46Team10ASportsFacilityBookingSystem
 
         private void FacilitiesUserControl_Load(object sender, EventArgs e)
         {
-            ctx = new SA46Team10aESNETProjectEntities();
-            var q = from x in ctx.Facilities select x;
-            flist = q.ToList();
+            ctx = Program.ctx;
+            flist = ctx?.Facilities?.ToList();
             gridFacility.DataSource = flist;
-            gridFacility.Columns[gridFacility.ColumnCount - 1].Visible = false;
             gridFacility.ForeColor = Color.Black;
+            var lastCol = gridFacility?.Columns?.GetLastColumn(
+                DataGridViewElementStates.Visible,
+                DataGridViewElementStates.None
+            );
+            if (lastCol != null) lastCol.Visible = false;
             gridFacility.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
         private void textBox1_TextChanged(object sender, EventArgs e)

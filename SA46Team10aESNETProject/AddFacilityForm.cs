@@ -25,7 +25,7 @@ namespace SA46Team10ASportsFacilityBookingSystem
 
         private void AddFacilityForm_Load(object sender, EventArgs e)
         {
-            ctx = new SA46Team10aESNETProjectEntities();
+            ctx = Program.ctx;
         }
 
         private void BtnNewMemberConfirm_Click(object sender, EventArgs e)

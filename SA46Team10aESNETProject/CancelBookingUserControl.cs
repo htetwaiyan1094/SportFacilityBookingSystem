@@ -23,22 +23,20 @@ namespace SA46Team10ASportsFacilityBookingSystem
             dataGridView1.ForeColor = Color.Black;
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         private void CancelBookingUserControl_Load(object sender, EventArgs e)
         {
-            ctx = new SA46Team10aESNETProjectEntities();
-            mlist = ctx.Bookings.Where(x => x.bookstatus == "active"
-                ).Select(x => x.Member).Distinct().ToList();
-            foreach (Member mem in mlist)
+            ctx = Program.ctx;
+            if (ctx != null)
             {
-                comboBox1.Items.Add(
-                    String.Format("{0} ( ID - {1} )", mem.MemberName, mem.memberID)
-                    );
+                mlist = ctx.Bookings.Where(x => x.bookstatus == "active")
+                    .Select(x => x.Member).Distinct().ToList();
+                foreach (Member mem in mlist)
+                {
+                    comboBox1.Items.Add(
+                        String.Format("{0} ( ID - {1} )", mem.MemberName, mem.memberID)
+                        );
+                }
             }
-
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

@@ -52,7 +52,7 @@ namespace SA46Team10ASportsFacilityBookingSystem
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            ctx = new SA46Team10aESNETProjectEntities();
+            ctx = Program.ctx;
             bookf = ctx.Facilities.Where(x => x.Activity == bookact
             && x.Venue == bookven).First();
             timeslots = (from x in ctx.Timings

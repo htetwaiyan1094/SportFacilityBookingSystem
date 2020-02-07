@@ -24,7 +24,6 @@ namespace SA46Team10ASportsFacilityBookingSystem
             Sidepanel1.Height = HomeButton.Height;
             Sidepanel1.Top = HomeButton.Top;
             homepageusercontrol1.BringToFront();
-
         }
 
 
@@ -34,8 +33,7 @@ namespace SA46Team10ASportsFacilityBookingSystem
             Cancelbookingbtn.Visible = false;
             Sidepanel1.Height = button2.Height;
             Sidepanel1.Top = button2.Top;
-            memberList1.BringToFront();
-     
+            memberList1.BringToFront();     
         }
 
         private void BookingButton_Click(object sender, EventArgs e)

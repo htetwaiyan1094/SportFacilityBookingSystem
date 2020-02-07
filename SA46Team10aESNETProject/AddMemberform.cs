@@ -31,7 +31,7 @@ namespace SA46Team10ASportsFacilityBookingSystem
 
         private void AddMemberform_Load(object sender, EventArgs e)
         {
-            ctx = new SA46Team10aESNETProjectEntities();
+            ctx = Program.ctx;
             m = new Member();
             int x, y;
             x = Screen.PrimaryScreen.WorkingArea.Width / 3;

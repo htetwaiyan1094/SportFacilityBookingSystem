@@ -22,7 +22,7 @@ namespace SA46Team10ASportsFacilityBookingSystem
         public EditMember()
         {
             InitializeComponent();
-            ctx = new SA46Team10aESNETProjectEntities();
+            ctx = Program.ctx;
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)

@@ -18,7 +18,6 @@ namespace SA46Team10ASportsFacilityBookingSystem
         {
             InitializeComponent();
             dataGridView1.ForeColor = Color.Black;
-
         }
 
         private void BtnAddMember_Click(object sender, EventArgs e)
@@ -56,11 +55,14 @@ namespace SA46Team10ASportsFacilityBookingSystem
 
         private void MemberList_Load(object sender, EventArgs e)
         {
-            ctx = new SA46Team10aESNETProjectEntities();
-            var q = from x in ctx.Members select x;
-            mlist = q.ToList();
+            ctx = Program.ctx;
+            mlist = ctx?.Members?.ToList();
             dataGridView1.DataSource = mlist;
-            dataGridView1.Columns[dataGridView1.ColumnCount - 1].Visible = false;
+            var lastCol = dataGridView1?.Columns?.GetLastColumn(
+                DataGridViewElementStates.Visible,
+                DataGridViewElementStates.None
+            );
+            if (lastCol != null) lastCol.Visible = false;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -81,10 +83,7 @@ namespace SA46Team10ASportsFacilityBookingSystem
             Member todelete = mlist[row];
             ctx.Members.Remove(todelete);
             List<Booking> bdel = ctx.Bookings.Where(x => x.Member.memberID == todelete.memberID).ToList();
-            foreach(Booking b in bdel)
-            {
-                ctx.Bookings.Remove(b);
-            }
+            foreach (Booking b in bdel) ctx.Bookings.Remove(b);
             ctx.SaveChanges();
             MessageBox.Show("Successfully Deleted!");
             textBox1.Text = "";

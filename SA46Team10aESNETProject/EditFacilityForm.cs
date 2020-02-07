@@ -26,7 +26,7 @@ namespace SA46Team10ASportsFacilityBookingSystem
 
         private void EditFacilityForm_Load(object sender, EventArgs e)
         {
-            ctx = new SA46Team10aESNETProjectEntities();
+            ctx = Program.ctx;
             int x, y;
             x = Screen.PrimaryScreen.WorkingArea.Width / 3;
             y = Screen.PrimaryScreen.WorkingArea.Height * 2 / 9;
